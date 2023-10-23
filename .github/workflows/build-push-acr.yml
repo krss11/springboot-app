@@ -40,5 +40,6 @@ jobs:
 
     - name: Deploys to AKS
       run: |
+        az aks get-credentials --resource-group azure-terraform-rg --name azureakskrss
         kubectl config use-context ${{env.CLUSTER_NAME}}
         kubectl apply -f aks-deploy-from-acr.yaml
