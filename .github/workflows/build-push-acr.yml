@@ -38,10 +38,7 @@ jobs:
            docker tag springboot-app:latest azurecontainerkrss.azurecr.io/springboot-app:latest
            docker push azurecontainerkrss.azurecr.io/springboot-app:latest
 
-    - name: Deploys application
-      uses: Azure/k8s-deploy@v4
-      with:
-          action: deploy
-          manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
-          images: |
-            ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
+    - name: Deploys to AKS
+      run: |
+        kubectl config use-context ${{env.CLUSTER_NAME}}
+        kubectl apply -f aks-deploy-from-acr.yaml
