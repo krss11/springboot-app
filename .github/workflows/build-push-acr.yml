@@ -23,3 +23,10 @@ jobs:
       uses: azure/login@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
+    - name: Build and push Docker image
+      run: |
+           #docker buildx create --use
+           docker build . --file Dockerfile --tag springboot-app:latest
+           docker login azurecontainerkrss.azurecr.io -u ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
+           docker tag springboot-app:latest azurecontainerkrss.azurecr.io/springboot-app:latest
+           docker push azurecontainerkrss.azurecr.io/springboot-app:latest
