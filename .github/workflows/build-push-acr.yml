@@ -4,6 +4,13 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  AZURE_CONTAINER_REGISTRY: "azurecontainerkrss"
+  CONTAINER_NAME: "springboot-appe"
+  RESOURCE_GROUP: "azure-terraform-rg"
+  CLUSTER_NAME: "azureakskrss"
+  DEPLOYMENT_MANIFEST_PATH: "aks-deploy-from-acr.yaml"
+
 jobs:
   build:
 
@@ -30,3 +37,11 @@ jobs:
            docker login azurecontainerkrss.azurecr.io -u ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
            docker tag springboot-app:latest azurecontainerkrss.azurecr.io/springboot-app:latest
            docker push azurecontainerkrss.azurecr.io/springboot-app:latest
+
+    - name: Deploys application
+      uses: Azure/k8s-deploy@v4
+      with:
+          action: deploy
+          manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
+          images: |
+            ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
