@@ -34,7 +34,7 @@ jobs:
               docker push azurecontainerkrss.azurecr.io/my-springboot-app:latest
         - name: Deploy to aks
           run: | 
-               az aks get-credentials --resource-group azure-terraform-rg --azureakskrss
+               az aks get-credentials --resource-group azure-terraform-rg --name azureakskrss
                kubectl config use-context --name azureakskrss
                kubectl apply -f aks-deploy.yaml
             
