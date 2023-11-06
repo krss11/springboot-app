@@ -35,7 +35,7 @@ jobs:
         - name: Deploy to aks
           run: | 
                az aks get-credentials --resource-group azure-terraform-rg --azureakskrss
-               kubectl config use-context azureakskrss
+               kubectl config use-context --name azureakskrss
                kubectl apply -f aks-deploy.yaml
             
       
