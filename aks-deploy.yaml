@@ -18,11 +18,11 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-    # service type loadbalancer 
+# service type loadbalancer 
 apiVersion: v1
 kind: Service
 metadata:
-  lables:
+  labels:
     app: my-springboot-app
     k8s-app: my-springboot-app
   name: my-springboot-app
@@ -31,7 +31,7 @@ spec:
   - name: http
     port: 80
     protocol: TCP
-    targetport: 8080
+    targetPort: 8080
   type: LoadBalancer
   selector:
     app: my-springboot-app
