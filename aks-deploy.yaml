@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-springboot-app
-        image: azurecontainerkrss.azure.io/springboot-app:v1
+        image: azurecontainerkrss.azurecr.io/my-springboot-app:v1
         imagepullpolicy: Always
         ports:
         - containerport: 8080
