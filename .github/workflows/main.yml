@@ -3,8 +3,8 @@ on:
     branches: [ "main"]
   pull_request:
     branches: ["main"]
-  jobs:
-        build:
+jobs:
+    build:
         runs-on: ubuntu-latest
 
         steps:
@@ -16,7 +16,7 @@ on:
         - name: Build with maven
           run: mvn clean install
         - name: Login to the azure
-          uaes: azure/login@v1
+          uses: azure/login@v1
           with:
               creds: '${{ secrets.AZURE_CREDENTIALS }}'
         - name: BUILD AND PUSH Docker image
