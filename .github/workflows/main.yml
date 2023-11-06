@@ -23,10 +23,10 @@ jobs:
               creds: '${{ secrets.AZURE_CREDENTIALS }}'
         - name: BUILD AND PUSH Docker image
           run: |
-              docker build . --file Dockerfile --tag springboot-app:v1
+              docker build . --file Dockerfile --tag my-springboot-app:v1
               docker login azurecontainerkrss.azure.io -u ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
-              docker tag springboot-app:v1 azurecontainerkrss.azure.io/springboot-app:v1
-              docker push azurecontainerkrss.azure.io/springboot-app:v1
+              docker tag my-springboot-app:v1 azurecontainerkrss.azure.io/my-springboot-app:v1
+              docker push azurecontainerkrss.azure.io/my-springboot-app:v1
         - name: Deploy to aks
           run: | 
                az aks get-credentials --resource-group azure-terraform-rg --azureakskrss
