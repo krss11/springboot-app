@@ -19,19 +19,19 @@ spec:
         ports:
         - containerPort: 8080
     # service type loadbalancer 
-    apiVersion: v1
-    kind: Service
-    metadata:
-      lables:
-        app: my-springboot-app
-        k8s-app: my-springboot-app
-      name: my-springboot-app
-      spec:
-        ports:
-        - name: http
-          port: 80
-          protocol: TCP
-          targetport: 8080
-        type: LoadBalancer
-        selector:
-          app: my-springboot-app
+apiVersion: v1
+kind: Service
+metadata:
+  lables:
+    app: my-springboot-app
+    k8s-app: my-springboot-app
+  name: my-springboot-app
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetport: 8080
+  type: LoadBalancer
+  selector:
+    app: my-springboot-app
