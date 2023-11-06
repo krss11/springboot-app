@@ -29,7 +29,7 @@ jobs:
         - name: BUILD AND PUSH Docker image
           run: |
               docker build . --file Dockerfile --tag my-springboot-app:latest
-              docker login azurecontainerkrss.azure.io -u ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
+              docker login azurecontainerkrss.azurecr.io -u ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
               docker tag my-springboot-app:latest azurecontainerkrss.azure.io/my-springboot-app:latest
               docker push azurecontainerkrss.azure.io/my-springboot-app:latest
         - name: Deploy to aks
