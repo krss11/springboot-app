@@ -6,11 +6,6 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        env:
-          AZURE_CONTAINER_REGISTRY: "azurecontainerkrss"
-          CONTAINER_NAME: "springboot-appe"
-          RESOURCE_GROUP: "azure-terraform-rg"
-          CLUSTER_NAME: "azureakskrss"
 
         steps:
         - uses: actions/checkout@v3
