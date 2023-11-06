@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadat: 
+  name: my-springboot-app-v1-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLables:
+      app: springboot-app
+  templet:
+    metadata:
+      lables:
+        app: springboot-app
+    spec:
+      containers:
+      - name: my-springboot-app
+        image: azurecontainerkrss.azure.io/my-springboot-app:v1
+        imagepullpolicy: Always
+        ports:
+        - containerport: 8080
+        
+    apiversion: v1
+    kind: Service
+    metadata:
+      lables:
+        app: my-springboot-app
+        k8s-app: my-springboot-app
+      name: my-springboot-app
+      spec:
+        ports:
+      - name: http
+        port: 80
+        protocol: TCP
+        targetport: 8080
+      type: LoadBalancer
+      selector:
+        app: my-springboot-app
