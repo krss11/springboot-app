@@ -9,7 +9,7 @@ spec:
       app: my-springboot-app
   template:
     metadata:
-      lables:
+      labels:
         app: my-springboot-app
     spec:
       containers:
