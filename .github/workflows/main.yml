@@ -30,8 +30,8 @@ jobs:
           run: |
               docker build . --file Dockerfile --tag my-springboot-app:latest
               docker login azurecontainerkrss.azurecr.io -u ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
-              docker tag my-springboot-app:latest azurecontainerkrss.azure.io/my-springboot-app:latest
-              docker push azurecontainerkrss.azure.io/my-springboot-app:latest
+              docker tag my-springboot-app:latest azurecontainerkrss.azurecr.io/my-springboot-app:latest
+              docker push azurecontainerkrss.azurecr.io/my-springboot-app:latest
         - name: Deploy to aks
           run: | 
                az aks get-credentials --resource-group azure-terraform-rg --azureakskrss
