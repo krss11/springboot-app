@@ -15,9 +15,10 @@ spec:
       containers:
       - name: my-springboot-app
         image: azurecontainerkrss.azurecr.io/my-springboot-app:latest
-        imagepullpolicy: Always
+        imagePullPolicy: Always
         ports:
-        - containerport: 8080
+        - containerPort: 8080
+    # service type loadbalancer 
     ---
     apiVersion: v1
     kind: Service
