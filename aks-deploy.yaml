@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-springboot-deployment-v1
+  name: my-springboot-deployment
 spec:
   replicas: 3
   selector:
@@ -14,11 +14,12 @@ spec:
     spec:
       containers:
       - name: my-springboot-app
-        image: azurecontainerkrss.azurecr.io/my-springboot-app:latest
+        image: azurecontainerkrss.azurecr.io/springboot-app:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
-# service type loadbalancer 
+# service type loadbalancer       
+---
 apiVersion: v1
 kind: Service
 metadata:
